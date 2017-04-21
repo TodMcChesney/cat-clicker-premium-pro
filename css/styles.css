@@ -1,0 +1,42 @@
+html {
+    box-sizing: border-box;
+    color: #02b3e4;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+img,
+li {
+    cursor: pointer;
+}
+
+.container {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.center {
+    text-align: center;
+}
+
+.heading {
+    font-size: 3em;
+}
+
+.list-div {
+    width: 20%;
+    padding: 0 5px;
+}
+
+.cat-div {
+    width: 80%;
+    padding: 0 5px;
+}
