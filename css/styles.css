@@ -10,8 +10,14 @@ html {
 }
 
 img,
-li {
+li,
+button {
     cursor: pointer;
+}
+
+label,
+button {
+    margin: 5px 0;
 }
 
 .container {
@@ -21,6 +27,7 @@ li {
 
 .flex-container {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .center {
@@ -38,5 +45,12 @@ li {
 
 .cat-div {
     width: 80%;
+    padding: 0 5px;
+}
+
+.admin-div {
+    display: flex;
+    flex-direction: column;
+    width: 183px;
     padding: 0 5px;
 }
