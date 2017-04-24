@@ -38,6 +38,7 @@ var octopus = {
         // Initialize both views
         catListView.init();
         selectedCatView.init();
+        adminView.init();
     },
     getCats: function() {
         return model.cats;
@@ -51,6 +52,13 @@ var octopus = {
     incrementCounter: function() {
         model.currentCat.clickCount ++;
         selectedCatView.render();
+    },
+    showAdmin: function() {
+        model.adminViewVisible = true;
+        adminView.render();
+    },
+    getAdminViewStatus: function() {
+        return model.adminViewVisible;
     }
 };
 
@@ -108,6 +116,27 @@ var selectedCatView = {
         this.catNameElement.textContent = currentCat.name;
         this.catImageElement.src = currentCat.image;
         this.catCounterElement.textContent = currentCat.clickCount;
+    }
+};
+
+var adminView = {
+    init: function() {
+        // Get DOM elements for the admin view
+        var adminButton = document.getElementById('admin-button');
+        this.adminForm = document.getElementById('admin-form');
+        // Click event listener for admin button
+        adminButton.addEventListener('click', function() {
+            octopus.showAdmin();
+        });
+        this.render();
+    },
+    render: function() {
+        octopus.getAdminViewStatus();
+        if (model.adminViewVisible === false) {
+            this.adminForm.style.display = 'none';
+        } else {
+            this.adminForm.style.display = 'block';
+        }
     }
 };
 
