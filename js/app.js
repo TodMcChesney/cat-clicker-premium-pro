@@ -26,7 +26,8 @@ var model = {
             image: 'img/cat-5.jpg',
             clickCount: 0
         }
-    ]
+    ],
+    adminViewVisible: false
 };
 
 // Octopus (communication hub)
