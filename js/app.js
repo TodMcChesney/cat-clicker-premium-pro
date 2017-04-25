@@ -57,6 +57,10 @@ var octopus = {
         model.adminViewVisible = true;
         adminView.render();
     },
+    hideAdmin: function() {
+        model.adminViewVisible = false;
+        adminView.render();
+    },
     getAdminViewStatus: function() {
         return model.adminViewVisible;
     }
@@ -123,16 +127,22 @@ var adminView = {
     init: function() {
         // Get DOM elements for the admin view
         var adminButton = document.getElementById('admin-button');
+        var cancelButton = document.getElementById('cancel-button');
         this.adminForm = document.getElementById('admin-form');
-        // Click event listener for admin button
+        // Click event listeners for admin buttons
         adminButton.addEventListener('click', function() {
             octopus.showAdmin();
+        });
+        cancelButton.addEventListener('click', function() {
+            octopus.hideAdmin();
         });
         this.render();
     },
     render: function() {
-        octopus.getAdminViewStatus();
-        if (model.adminViewVisible === false) {
+        // Get the status of the admin view
+        var adminViewStatus = octopus.getAdminViewStatus();
+        // Show admin if status is true
+        if (adminViewStatus === false) {
             this.adminForm.style.display = 'none';
         } else {
             this.adminForm.style.display = 'block';
