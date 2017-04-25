@@ -35,7 +35,7 @@ var octopus = {
     init: function() {
         // Initialize the 1st cat as the default currentCat
         model.currentCat = model.cats[0];
-        // Initialize both views
+        // Initialize all views
         catListView.init();
         selectedCatView.init();
         adminView.init();
@@ -64,6 +64,13 @@ var octopus = {
     },
     getAdminViewStatus: function() {
         return model.adminViewVisible;
+    },
+    saveCatData: function() {
+        model.currentCat.name = adminView.adminNameElement.value;
+        model.currentCat.image = adminView.adminImageElement.value;
+        model.currentCat.clickCount = adminView.adminCounterElement.value;
+        this.hideAdmin();
+        catListView.render();
     }
 };
 
@@ -76,6 +83,8 @@ var catListView = {
         this.render();
     },
     render: function() {
+        // Delete old html each time a new list is rendered
+        this.catListElement.innerHTML = "";
         // Get array of cats to loop through from octopus
         var cats = octopus.getCats();
         var catListItem;
@@ -131,6 +140,7 @@ var adminView = {
         // Get DOM elements for the admin view
         var adminButton = document.getElementById('admin-button');
         var cancelButton = document.getElementById('cancel-button');
+        var saveButton = document.getElementById('save-button');
         this.adminForm = document.getElementById('admin-form');
         this.adminNameElement = document.getElementById('input-name');
         this.adminImageElement = document.getElementById('input-image');
@@ -141,6 +151,9 @@ var adminView = {
         });
         cancelButton.addEventListener('click', function() {
             octopus.hideAdmin();
+        });
+        saveButton.addEventListener('click', function() {
+            octopus.saveCatData();
         });
         this.render();
     },
@@ -159,7 +172,6 @@ var adminView = {
         this.adminNameElement.value = currentCat.name;
         this.adminImageElement.value = currentCat.image;
         this.adminCounterElement.value = currentCat.clickCount;
-
     }
 };
 
